@@ -48,4 +48,8 @@ export class Tile {
     }
     return [edges, features];
   }
+
+  static getSrc(name: string) {
+    return `/img/tiles/${name}.png`;
+  }
 }

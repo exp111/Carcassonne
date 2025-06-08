@@ -17,7 +17,7 @@ export class TileViewerComponent implements OnInit {
   }
 
   getSrc(name: string) {
-    return `img/tiles/${name}.png`;
+    return Tile.getSrc(name);
   }
 
   Array = Array;

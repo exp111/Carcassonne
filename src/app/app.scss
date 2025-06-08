@@ -1,0 +1,17 @@
+nav {
+  padding: 0.5em;
+  display: flex;
+  gap: 0.5em;
+
+  // links
+  & a {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+
+    // show hover
+    &:hover {
+      color: gray;
+    }
+  }
+}
