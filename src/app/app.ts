@@ -6,7 +6,7 @@ import {Tiles} from '../data/tiles';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.scss'
 })
 export class App implements OnInit {
   protected title = 'Carcassonne';

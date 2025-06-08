@@ -6,7 +6,7 @@ import {Tile} from '../../model/tile';
   selector: 'app-tile-viewer',
   imports: [],
   templateUrl: './tile-viewer.component.html',
-  styleUrl: './tile-viewer.component.css'
+  styleUrl: './tile-viewer.component.scss'
 })
 export class TileViewerComponent implements OnInit {
   tiles = Tiles;
