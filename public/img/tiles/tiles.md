@@ -20,13 +20,13 @@ Special:
 - Monastery with Road (ffrf_m, x2): [](ffrf_m.png)
 - 4-City with CoA (cccc_s, x1): [](cccc_s.png)
 - 3-City (ccfc, x3): [](ccfc.png)
-- 3-City with CoA (ccfc_s, x1): [](ccfc_s.png) # TODO
+- 3-City with CoA (ccfc_s, x1): [](ccfc_s.png)
 - 3-City with Road (ccrc, x1): [](ccrc.png)
-- 3-City with Road & CoA (ccrc_s, x2): [](ccrc_s.png) # TODO
+- 3-City with Road & CoA (ccrc_s, x2): [](ccrc_s.png)
 - 2-City (ccff, x3): [](ccff.png)
-- 2-City with CoA (ccff_s, x2): [](ccff_s.png) # TODO
+- 2-City with CoA (ccff_s, x2): [](ccff_s.png)
 - 2-City with Curve (crrc, x3): [](crrc.png)
-- 2-City with Curve & CoA (crrc_s, x2): [](crrc_s.png) # TODO
+- 2-City with Curve & CoA (crrc_s, x2): [](crrc_s.png)
 - 2-City-Tunnel (fcfc, x1): [](fcfc.png)
 - 2-City-Tunnel with CoA (fcfc_s, x2): [](fcfc_s.png)
 - 2-City seperated (cffc, x2): [](cffc.png)
