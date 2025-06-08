@@ -21,6 +21,7 @@ export class TilePlacerComponent implements OnInit {
   }
 
   generateDeck() {
+    //TODO: fish out start tile
     this.deck = shuffleArray(Tiles);
   }
 }

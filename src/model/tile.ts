@@ -52,4 +52,8 @@ export class Tile {
   static getSrc(name: string) {
     return `/img/tiles/${name}.png`;
   }
+
+  getSrc() {
+    return Tile.getSrc(this.name);
+  }
 }

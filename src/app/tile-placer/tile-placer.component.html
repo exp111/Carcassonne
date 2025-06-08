@@ -1,3 +1,5 @@
-<span>Remaining Tiles: {{deck.length}}</span>
-<span>Next Tile</span>
-<img class="next-tile" [src]="">
+<span>Remaining Tiles: {{ deck.length }}</span>
+<span>Next Tile:</span>
+@if (deck.length > 0) {
+  <img class="next-tile" [src]="deck[0].getSrc()">
+}
