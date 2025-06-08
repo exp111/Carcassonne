@@ -1,11 +1,11 @@
-import {getEnumValue, hasEnumValue} from '../utils/enumUtil';
+import {hasEnumValue} from '../utils/enumUtil';
 
-enum Feature {
+export enum Feature {
   Monastery = 'm',
   CoatOfArms = 's'
 }
 
-enum Edge {
+export enum Edge {
   Field = 'f',
   Road = 'r',
   City = 'c'

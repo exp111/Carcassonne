@@ -1,62 +1,56 @@
-import {Tile} from '../model/tile';
+import {TileDef} from '../model/tileDef';
 
-function generateTiles(name: string, amount: number) {
-  let ret = [];
-  for (let i = 0; i < amount; i++) {
-    ret.push(new Tile(name));
-  }
-  return ret;
-}
-
-export var Tiles = [
+export var TileDefs = [
   // start
-  new Tile("crfr", true),
+  new TileDef("crfr", 1, true),
   // Monastery
-  ...generateTiles("ffff_m", 4),
+  new TileDef("ffff_m", 4),
   // Monastery with Road
-  ...generateTiles("ffrf_m", 2),
+  new TileDef("ffrf_m", 2),
   // 4-City with CoA
-  ...generateTiles("cccc_s", 1),
+  new TileDef("cccc_s", 1),
   // 3-City
-  ...generateTiles("ccfc", 3),
+  new TileDef("ccfc", 3),
   // 3-City with CoA
-  ...generateTiles("ccfc_s", 1),
+  new TileDef("ccfc_s", 1),
   // 3-City with Road
-  ...generateTiles("ccrc", 1),
+  new TileDef("ccrc", 1),
   // 3-City with Road & CoA
-  ...generateTiles("ccrc_s", 2),
+  new TileDef("ccrc_s", 2),
   // 2-City
-  ...generateTiles("ccff", 3),
+  new TileDef("ccff", 3),
   // 2-City with CoA
-  ...generateTiles("ccff_s", 2),
+  new TileDef("ccff_s", 2),
   // 2-City with Curve
-  ...generateTiles("crrc", 3),
+  new TileDef("crrc", 3),
   // 2-City with Curve & CoA
-  ...generateTiles("crrc_s", 2),
+  new TileDef("crrc_s", 2),
   // 2-City-Tunnel
-  ...generateTiles("fcfc", 1),
+  new TileDef("fcfc", 1),
   // 2-City-Tunnel with CoA
-  ...generateTiles("fcfc_s", 2),
+  new TileDef("fcfc_s", 2),
   // 2-City seperated
-  ...generateTiles("cffc", 2),
+  new TileDef("cffc", 2),
   // 2-City seperated
-  ...generateTiles("cfcf", 3),
+  new TileDef("cfcf", 3),
   // 1-City
-  ...generateTiles("cfff", 5),
+  new TileDef("cfff", 5),
   // 1-City with Curve left
-  ...generateTiles("cfrr", 3),
+  new TileDef("cfrr", 3),
   // 1-City with Curve right
-  ...generateTiles("crrf", 3),
+  new TileDef("crrf", 3),
   // 1-City with 3-Crossing
-  ...generateTiles("crrr", 3),
+  new TileDef("crrr", 3),
   // 1-City with Road, same as start
-  ...generateTiles("crfr", 3),
+  new TileDef("crfr", 3),
   // Road
-  ...generateTiles("rfrf", 8),
+  new TileDef("rfrf", 8),
   // Curve left
-  ...generateTiles("ffrr", 9),
+  new TileDef("ffrr", 9),
   // 3-Crossing
-  ...generateTiles("frrr", 4),
+  new TileDef("frrr", 4),
   // 4-Crossing
-  ...generateTiles("rrrr", 1),
+  new TileDef("rrrr", 1),
 ]
+
+export var Tiles = TileDefs.flatMap(d => d.generateTiles());

@@ -1,0 +1,15 @@
+.tile-def {
+  display: flex;
+  gap: 1px;
+  margin-bottom: 1px;
+}
+
+.tile {
+  width: 128px;
+}
+.tile.start {
+  border: 2px solid red;
+}
+.amount {
+  align-self: center;
+}

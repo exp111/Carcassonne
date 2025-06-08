@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Tiles} from '../../data/tiles';
+import {Tiles, TileDefs} from '../../data/tiles';
 import {Tile} from '../../model/tile';
 
 @Component({
@@ -10,22 +10,15 @@ import {Tile} from '../../model/tile';
 })
 export class TileViewerComponent implements OnInit {
   tiles = Tiles;
-  tileMap: Map<string, { tile: Tile, amount: number }> = new Map();
+  tileDefs = TileDefs;
 
-  constructor() {
-    for (let tile of this.tiles) {
-      if (this.tileMap.has(tile.name)) {
-        this.tileMap.get(tile.name)!.amount += 1;
-      } else {
-        this.tileMap.set(tile.name, {tile: tile, amount: 1});
-      }
-    }
-  }
   ngOnInit() {
     (window as any).viewer = this;
   }
 
-  getSrc(tile: Tile) {
-    return `img/tiles/${tile.name}.png`;
+  getSrc(name: string) {
+    return `img/tiles/${name}.png`;
   }
+
+  Array = Array;
 }

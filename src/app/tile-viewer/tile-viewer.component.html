@@ -1,6 +1,10 @@
 <div class="viewer">
-  @for (entry of tileMap; track entry[0]) {
-    <img class="tile" [src]="getSrc(entry[1].tile)">
-    <span class="amount">{{ entry[1].amount }}</span>
+  @for (def of tileDefs; track def.name) {
+    <div class="tile-def">
+      @for (i of Array(def.amount); track i) {
+        <img class="tile" [class.start]="$first && def.start" [src]="getSrc(def.name)">
+      }
+      <span class="amount">x {{def.amount}}</span>
+    </div>
   }
 </div>
