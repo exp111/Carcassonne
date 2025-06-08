@@ -50,7 +50,7 @@ export class Tile {
   }
 
   static getSrc(name: string) {
-    return `/img/tiles/${name}.png`;
+    return `./img/tiles/${name}.png`;
   }
 
   getSrc() {
