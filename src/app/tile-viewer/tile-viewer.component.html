@@ -1,7 +1,7 @@
 <div class="viewer">
-  @for (def of tileDefs; track def.name) {
+  @for (def of tileDefs; track `${def.name}_${def.start}`) {
     <div class="tile-def">
-      @for (i of Array(def.amount); track i) {
+      @for (i of Array(def.amount); track $index) {
         <img class="tile" [class.start]="$first && def.start" [src]="getSrc(def.name)">
       }
       <span class="amount">x {{def.amount}}</span>
