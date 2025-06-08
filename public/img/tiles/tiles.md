@@ -1,7 +1,7 @@
 # Naming
 naming according to edges in the following scheme:
 ```
-<Edge><Edge><Edge><Edge>(<Number>)?(_<Special>)?
+<Edge><Edge><Edge><Edge>(_<Special>)?
 ```
 Edges are named starting from the top side and then going clockwise.
 
@@ -35,7 +35,7 @@ Special:
 - 1-City with Curve left (cfrr, x3): [](cfrr.png)
 - 1-City with Curve right (crrf, x3): [](crrf.png)
 - 1-City with 3-Crossing (crrr, x3): [](crrr.png)
-- 1-City with Road (crfr, x3): [](crfr.png)
+- 1-City with Road, same as start (crfr, x3): [](crfr.png)
 - Road (rfrf, x8): [](rfrf.png)
 - Curve left (ffrr, x9): [](ffrr.png)
 - 3-Crossing (frrr, x4): [](frrr.png)
