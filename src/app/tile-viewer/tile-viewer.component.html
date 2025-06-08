@@ -1,0 +1,6 @@
+<div class="viewer">
+  @for (entry of tileMap; track entry[0]) {
+    <img class="tile" [src]="getSrc(entry[1].tile)">
+    <span class="amount">{{ entry[1].amount }}</span>
+  }
+</div>
