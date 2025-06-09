@@ -11,20 +11,39 @@ export class Game {
   map: Map<string, Tile> = new Map();
 
   constructor() {
-
+    (window as any).game = this;
   }
 
   init() {
     this.generateDeck();
     this.newMap();
+    this.placeStartTile();
   }
 
   newMap() {
     this.map = new Map();
   }
 
+  placeStartTile() {
+    let startIndex = this.deck.findIndex(t => t.start);
+    let start = this.deck.splice(startIndex, 1)[0];
+    if (startIndex == -1 || !start) {
+      console.error("No starting tile found.");
+      return;
+    }
+    this.setTile(start, 0, 0);
+  }
+
+  setTile(tile: Tile, x: number, y: number) {
+    this.map.set(this.getCoord(x, y), tile);
+  }
+
   getTile(x: number, y: number) {
-    return this.map.get(`${x}.${y}`) || null;
+    return this.map.get(this.getCoord(x, y)) || null;
+  }
+
+  getCoord(x: number, y: number) {
+    return `${x}.${y}`;
   }
 
   generateDeck() {

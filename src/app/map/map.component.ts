@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, signal, ViewChild} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {ApplicationOptions} from 'pixi.js';
 import {PixiSceneComponent, PixiStageDirective} from '@klerick/ng-pixijs';
-import {Game} from '../../services/game';
 import {StageComponent} from './stage/stage.component';
 
 @Component({

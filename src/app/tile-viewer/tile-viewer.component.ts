@@ -16,9 +16,5 @@ export class TileViewerComponent implements OnInit {
     (window as any).viewer = this;
   }
 
-  getSrc(name: string) {
-    return Tile.getSrc(name);
-  }
-
   Array = Array;
 }

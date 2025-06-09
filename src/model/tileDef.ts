@@ -14,8 +14,12 @@ export class TileDef {
   generateTiles() {
     let ret = [];
     for (let i = 0; i < this.amount; i++) {
-      ret.push(new Tile(this.name, false));
+      ret.push(new Tile(this.name, this.start));
     }
     return ret;
+  }
+
+  getSrc() {
+    return Tile.getSrc(this.name);
   }
 }

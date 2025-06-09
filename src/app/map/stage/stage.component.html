@@ -2,4 +2,9 @@
   <pixi-text [style]="{fill: 'white'}" x="20" y="20">
     Test
   </pixi-text>
+  @for (entry of game.map; track entry[0]) {
+    @let pos = entry[0];
+    @let tile = entry[1];
+    <pixi-sprite [texture]="getTileTexture(tile)" x="50" y="50"/>
+  }
 </pixi-container>
