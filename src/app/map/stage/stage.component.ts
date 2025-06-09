@@ -1,6 +1,6 @@
 import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {PixiComponent, PixiContainer} from '@klerick/ng-pixijs';
-import {Assets, Container, Rectangle, Texture} from 'pixi.js';
+import {Assets, Container, Graphics, Rectangle, Texture} from 'pixi.js';
 import {TileDefs} from '../../../data/tiles';
 import {Game} from '../../../services/game';
 import {Tile} from '../../../model/tile';
@@ -42,15 +42,20 @@ export class StageComponent extends PixiComponent<Container> {
     return this.tileTextureMap.get(tile.name);
   }
 
-  hoverTile(pos: string) {
+  hoverTile(tile: Graphics, pos: string) {
     console.log(`hover ${pos}`);
     this.hoveredTile = pos;
+    // mark as hovered
+    //TODO: black?
+    tile.tint = 0x0000FF;
   }
 
-  unhoverTile(pos: string) {
+  unhoverTile(tile: Graphics, pos: string) {
     console.log(`unhover tile ${pos}`);
     if (this.hoveredTile == pos) {
       this.hoveredTile = undefined;
+      // unmark tile
+      tile.tint = 0xFFFFFF;
     }
   }
 

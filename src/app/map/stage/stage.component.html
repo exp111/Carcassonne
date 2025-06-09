@@ -9,13 +9,13 @@
   @for (entry of game.emptyNeighbourTiles; track entry[0]) {
     @let coord = entry[0];
     @let pos = game.parseCoords(coord);
-    <pixi-graphics [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
+    <pixi-graphics #emptyTile [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
                    [rect]="TILE_RECT_STRING"
                    [stroke]="{ width: 1, color: 'red' }"
                    eventMode="static"
                    [hitArea]="TILE_RECT"
-                   (mouseover)="hoverTile(coord)"
-                   (mouseleave)="unhoverTile(coord)"
+                   (mouseover)="hoverTile(emptyTile, coord)"
+                   (mouseleave)="unhoverTile(emptyTile, coord)"
     />
   }
 </pixi-container>
