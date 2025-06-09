@@ -1,18 +1,10 @@
 import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {PixiComponent, PixiContainer} from '@klerick/ng-pixijs';
-import {Assets, Container, Graphics, Sprite, Text, Texture, TilingSprite} from 'pixi.js';
+import {Assets, Container, Rectangle, Texture} from 'pixi.js';
 import {TileDefs} from '../../../data/tiles';
 import {Game} from '../../../services/game';
 import {Tile} from '../../../model/tile';
 import {TileDef} from '../../../model/tileDef';
-
-export interface HTMLElementTagNameMap {
-  'pixi-container': Container;
-  'pixi-sprite': Sprite;
-  'pixi-tiling-sprite': TilingSprite;
-  'pixi-text': Text;
-  'pixi-graphics': Graphics;
-}
 
 @PixiContainer(true)
 @Component({
@@ -24,7 +16,10 @@ export interface HTMLElementTagNameMap {
 })
 export class StageComponent extends PixiComponent<Container> {
   TILE_WIDTH = 128;
+  TILE_RECT_STRING = `0, 0, ${this.TILE_WIDTH}, ${this.TILE_WIDTH}`;
+  TILE_RECT = new Rectangle(0, 0, this.TILE_WIDTH, this.TILE_WIDTH);
   tileTextureMap: Map<string, Texture> = new Map();
+  hoveredTile?: string;
 
   constructor(protected game: Game) {
     super();
@@ -46,4 +41,18 @@ export class StageComponent extends PixiComponent<Container> {
   getTileTexture(tile: Tile) {
     return this.tileTextureMap.get(tile.name);
   }
+
+  hoverTile(pos: string) {
+    console.log(`hover ${pos}`);
+    this.hoveredTile = pos;
+  }
+
+  unhoverTile(pos: string) {
+    console.log(`unhover tile ${pos}`);
+    if (this.hoveredTile == pos) {
+      this.hoveredTile = undefined;
+    }
+  }
+
+  protected readonly Math = Math;
 }
