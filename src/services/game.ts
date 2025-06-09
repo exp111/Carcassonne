@@ -35,15 +35,19 @@ export class Game {
   }
 
   setTile(tile: Tile, x: number, y: number) {
-    this.map.set(this.getCoord(x, y), tile);
+    this.map.set(this.getCoords(x, y), tile);
   }
 
   getTile(x: number, y: number) {
-    return this.map.get(this.getCoord(x, y)) || null;
+    return this.map.get(this.getCoords(x, y)) || null;
   }
 
-  getCoord(x: number, y: number) {
+  getCoords(x: number, y: number) {
     return `${x}.${y}`;
+  }
+
+  parseCoords(coords: string) {
+    return coords.split(".").map(n => Number(n));
   }
 
   generateDeck() {

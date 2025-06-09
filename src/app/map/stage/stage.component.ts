@@ -23,6 +23,7 @@ export interface HTMLElementTagNameMap {
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class StageComponent extends PixiComponent<Container> {
+  TILE_WIDTH = 50;
   tileTextureMap: Map<string, Sprite> = new Map();
 
   constructor(protected game: Game) {
