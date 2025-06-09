@@ -1,9 +1,15 @@
 <pixi-container>
+  <!-- draw game tiles -->
   @for (entry of game.map; track entry[0]) {
     @let pos = game.parseCoords(entry[0]);
-    @let x = pos[0];
-    @let y = pos[1];
     @let tile = entry[1];
-    <pixi-sprite [texture]="getTileTexture(tile)" [x]="x * TILE_WIDTH" [y]="y * TILE_WIDTH"/>
+    <pixi-sprite [texture]="getTileTexture(tile)" [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH" [width]="TILE_WIDTH" [height]="TILE_WIDTH"/>
+  }
+  <!-- draw empty neighbour tiles-->
+  @for (entry of game.emptyNeighbourTiles; track entry[0]) {
+    @let pos = game.parseCoords(entry[0]);
+    <pixi-graphics [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
+                   [rect]="`0, 0, ${TILE_WIDTH}, ${TILE_WIDTH}`"
+                   [stroke]="{ width: 1, color: 'red' }"/>
   }
 </pixi-container>

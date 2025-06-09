@@ -9,6 +9,7 @@ import {Tiles} from '../data/tiles';
 export class Game {
   deck: Tile[] = [];
   map: Map<string, Tile> = new Map();
+  emptyNeighbourTiles: Map<string, boolean> = new Map();
 
   constructor() {
     (window as any).game = this;
@@ -36,6 +37,7 @@ export class Game {
 
   setTile(tile: Tile, x: number, y: number) {
     this.map.set(this.getCoords(x, y), tile);
+    this.recalculateNeighbours();
   }
 
   getTile(x: number, y: number) {
@@ -47,11 +49,51 @@ export class Game {
   }
 
   parseCoords(coords: string) {
-    return coords.split(".").map(n => Number(n));
+    let c = coords.split(".");
+    return {
+      x: Number(c[0]),
+      y: Number(c[1])
+    }
   }
 
   generateDeck() {
-    //TODO: fish out start tile
     this.deck = shuffleArray(Tiles);
+  }
+
+  recalculateNeighbours() {
+    this.emptyNeighbourTiles.clear();
+    for (let entry of this.map) {
+      let emptyNeighbours = this.getEmptyNeighbours(entry[0]);
+      for (let neighbour of emptyNeighbours) {
+        this.emptyNeighbourTiles.set(neighbour, true);
+      }
+    }
+  }
+
+  // gets the empty orthogonal neighbor coordinates of a coordinate
+  getEmptyNeighbours(coords: string) {
+    let ret = [];
+    let neighbours = this.getNeighbours(coords);
+    for (let neighbour of neighbours) {
+      if (!this.map.has(neighbour)) {
+        ret.push(neighbour);
+      }
+    }
+    return ret;
+  }
+
+  // returns the orthogonal neighbor coordinates of a coordinate
+  getNeighbours(coords: string) {
+    let pos = this.parseCoords(coords);
+    return [
+      // up
+      this.getCoords(pos.x, pos.y - 1),
+      // right
+      this.getCoords(pos.x + 1, pos.y),
+      // down
+      this.getCoords(pos.x, pos.y + 1),
+      // left
+      this.getCoords(pos.x - 1, pos.y)
+    ];
   }
 }
