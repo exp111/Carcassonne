@@ -15,6 +15,10 @@ export class Game {
     (window as any).game = this;
   }
 
+  get nextTile() {
+    return this.deck[0] || null;
+  }
+
   init() {
     this.generateDeck();
     this.newMap();
@@ -33,6 +37,15 @@ export class Game {
       return;
     }
     this.setTile(start, 0, 0);
+  }
+
+  placeNextTile(x: number, y: number) {
+    let nextTile = this.deck.shift();
+    if (!nextTile) {
+      console.error("No tiles left.");
+      return;
+    }
+    this.setTile(nextTile, x, y);
   }
 
   setTile(tile: Tile, x: number, y: number) {

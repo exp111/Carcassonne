@@ -1,4 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {PixiComponent, PixiContainer} from '@klerick/ng-pixijs';
 import {Assets, Container, Graphics, Rectangle, Texture} from 'pixi.js';
 import {TileDefs} from '../../../data/tiles';
@@ -21,7 +21,8 @@ export class StageComponent extends PixiComponent<Container> {
   tileTextureMap: Map<string, Texture> = new Map();
   hoveredTile?: string;
 
-  constructor(protected game: Game) {
+  constructor(protected game: Game,
+              protected changeDetection: ChangeDetectorRef) {
     super();
     (window as any).stage = this;
     this.loadTextures();
@@ -57,6 +58,14 @@ export class StageComponent extends PixiComponent<Container> {
       // unmark tile
       tile.tint = 0xFFFFFF;
     }
+  }
+
+  onClickEmptyTile(coords: string) {
+    console.log(`click ${coords}`);
+    let pos = this.game.parseCoords(coords);
+    this.game.placeNextTile(pos.x, pos.y);
+    // update grid
+    this.changeDetection.detectChanges();
   }
 
   protected readonly Math = Math;

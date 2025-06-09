@@ -2,7 +2,7 @@
   <span>Remaining Tiles: {{ game.deck.length }}</span>
   <span>Next Tile:</span>
   @if (game.deck.length > 0) {
-    <img class="next-tile" [src]="game.deck[0].getSrc()">
+    <img class="next-tile" [src]="game.nextTile.getSrc()">
   }
 </div>
 <app-map></app-map>
