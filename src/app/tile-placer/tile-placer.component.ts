@@ -1,7 +1,6 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {Game} from '../../services/game';
 import {MapComponent} from '../map/map.component';
-import {Direction, normalizeDirection} from '../../model/tile';
 
 @Component({
   selector: 'app-tile-placer',
@@ -20,6 +19,12 @@ export class TilePlacerComponent {
 
   rotate(amount: number) {
     this.game.rotateStartTile(amount);
+  }
+
+  skipTile() {
+    this.game.deck.push(this.game.deck.shift()!);
+    this.game.recalculateNeighbours();
+    this.game.recalculatePlaceable();
   }
 
   onClickTile(coords: string) {
