@@ -125,6 +125,7 @@ export class Game {
     return true;
   }
 
+  // gets the direction to neighbor
   getDirectionOfNeighbour(self: string, neighbour: string) {
     let selfPos = this.parseCoords(self);
     let neighbourPos = this.parseCoords(neighbour);
@@ -135,9 +136,9 @@ export class Game {
       return Direction.E;
     }
     if (diff.y > 0) {
-      return Direction.S;
-    } else if (diff.y < 0) {
       return Direction.N;
+    } else if (diff.y < 0) {
+      return Direction.S;
     }
     return null;
   }

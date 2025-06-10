@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {Game} from '../../services/game';
 import {MapComponent} from '../map/map.component';
+import {Direction} from '../../model/tile';
 
 @Component({
   selector: 'app-tile-placer',
@@ -32,6 +33,7 @@ export class TilePlacerComponent {
     if (!this.game.canPlaceNextTile(pos.x, pos.y)) {
       return;
     }
+    console.log(`placing tile: ${this.game.nextTile.getEdge(Direction.N)},${this.game.nextTile.getEdge(Direction.E)},${this.game.nextTile.getEdge(Direction.S)},${this.game.nextTile.getEdge(Direction.W)} (${this.game.nextTile.name})`);
     this.game.placeNextTile(pos.x, pos.y);
     // update grid
     this.changeDetectorRef.detectChanges();
