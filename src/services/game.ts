@@ -86,10 +86,20 @@ export class Game {
 
   // gets the empty orthogonal neighbor coordinates of a coordinate
   getEmptyNeighbours(coords: string) {
+    return this.getNeighbourTiles(coords, false);
+  }
+
+  // gets the filled orthogonal neighbour coordinates of a coordinate
+  getFilledNeighbours(coords: string) {
+    return this.getNeighbourTiles(coords, true);
+  }
+
+  getNeighbourTiles(coords: string, status: boolean) {
     let ret = [];
     let neighbours = this.getNeighbours(coords);
     for (let neighbour of neighbours) {
-      if (!this.map.has(neighbour)) {
+      // if (filled and parameter) or (!filled and !parameter), add to return
+      if (status == this.map.has(neighbour)) {
         ret.push(neighbour);
       }
     }
