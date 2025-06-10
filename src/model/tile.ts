@@ -11,11 +11,21 @@ export enum Edge {
   City = 'c'
 }
 
+export enum Direction {
+  N,
+  E,
+  S,
+  W,
+  END
+}
+
 export class Tile {
   start: boolean;
   name: string;
   edges: Edge[];
   features: Feature[];
+  // Runtime vars
+  rotation = Direction.N;
 
   constructor(name: string, start: boolean = false) {
     this.name = name;

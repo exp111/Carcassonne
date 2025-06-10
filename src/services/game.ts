@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Tile} from '../model/tile';
+import {Injectable} from '@angular/core';
+import {Direction, Tile} from '../model/tile';
 import {shuffleArray} from '../utils/arrayUtil';
 import {Tiles} from '../data/tiles';
 
@@ -36,19 +36,20 @@ export class Game {
       console.error("No starting tile found.");
       return;
     }
-    this.setTile(start, 0, 0);
+    this.setTile(start, 0, 0, Direction.N);
   }
 
-  placeNextTile(x: number, y: number) {
+  placeNextTile(x: number, y: number, rotation: Direction) {
     let nextTile = this.deck.shift();
     if (!nextTile) {
       console.error("No tiles left.");
       return;
     }
-    this.setTile(nextTile, x, y);
+    this.setTile(nextTile, x, y, rotation);
   }
 
-  setTile(tile: Tile, x: number, y: number) {
+  setTile(tile: Tile, x: number, y: number, rotation: Direction) {
+    tile.rotation = rotation;
     this.map.set(this.getCoords(x, y), tile);
     this.recalculateNeighbours();
   }

@@ -3,7 +3,11 @@
   @for (entry of game.map; track entry[0]) {
     @let pos = game.parseCoords(entry[0]);
     @let tile = entry[1];
-    <pixi-sprite [texture]="getTileTexture(tile)" [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH" [width]="TILE_WIDTH" [height]="TILE_WIDTH"/>
+    <pixi-sprite [texture]="getTileTexture(tile)"
+                 [x]="pos.x * TILE_WIDTH + TILE_WIDTH / 2" [y]="pos.y * TILE_WIDTH + TILE_WIDTH / 2"
+                 [width]="TILE_WIDTH" [height]="TILE_WIDTH"
+                 anchor="0.5"
+                 [angle]="tile.rotation * 90"/>
   }
   <!-- draw empty neighbour tiles-->
   @for (entry of game.emptyNeighbourTiles; track entry[0]) {
