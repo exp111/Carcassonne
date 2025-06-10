@@ -50,8 +50,7 @@ export class StageComponent extends PixiComponent<Container> {
     console.log(`hover ${pos}`);
     this.hoveredTile = pos;
     // mark as hovered
-    //TODO: black?
-    tile.tint = 0x0000FF;
+    tile.tint = 0xFFFF00;
   }
 
   unhoverTile(tile: Graphics, pos: string) {

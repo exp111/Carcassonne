@@ -9,9 +9,10 @@
   @for (entry of game.emptyNeighbourTiles; track entry[0]) {
     @let coords = entry[0];
     @let pos = game.parseCoords(coords);
-    <pixi-graphics #emptyTile [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
+    <pixi-graphics #emptyTile
+                   [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
                    [rect]="TILE_RECT_STRING"
-                   [stroke]="{ width: 1, color: 'red' }"
+                   [stroke]="{ width: 1, color: 'white' }"
                    eventMode="static"
                    [hitArea]="TILE_RECT"
                    (click)="onClickEmptyTile(coords)"
