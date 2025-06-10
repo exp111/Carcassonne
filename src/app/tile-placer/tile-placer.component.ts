@@ -18,21 +18,16 @@ export class TilePlacerComponent {
     game.init();
   }
 
-  selectedRotation = Direction.N;
-
   rotate(amount: number) {
-    this.selectedRotation += amount;
-    this.selectedRotation = normalizeDirection(this.selectedRotation);
+    this.game.rotateStartTile(amount);
   }
 
   onClickTile(coords: string) {
     let pos = this.game.parseCoords(coords);
-    if (!this.game.canPlaceNextTile(pos.x, pos.y, this.selectedRotation)) {
+    if (!this.game.canPlaceNextTile(pos.x, pos.y)) {
       return;
     }
-    this.game.placeNextTile(pos.x, pos.y, this.selectedRotation);
-    // reset rotation
-    this.selectedRotation = Direction.N;
+    this.game.placeNextTile(pos.x, pos.y);
     // update grid
     this.changeDetectorRef.detectChanges();
   }

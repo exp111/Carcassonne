@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Direction, getOppositeDirection, Tile} from '../model/tile';
+import {Direction, getOppositeDirection, normalizeDirection, Tile} from '../model/tile';
 import {shuffleArray} from '../utils/arrayUtil';
 import {Tiles} from '../data/tiles';
 
@@ -37,26 +37,31 @@ export class Game {
       console.error("No starting tile found.");
       return;
     }
-    this.setTile(start, 0, 0, Direction.N);
+    this.setTile(start, 0, 0);
+  }
+
+  rotateStartTile(amount: number) {
+    let nextTile = this.nextTile!;
+    nextTile.rotation = normalizeDirection(nextTile.rotation + amount);
+    this.recalculatePlaceable();
   }
 
   // checks if the next tile can be placed at the given position
-  canPlaceNextTile(x: number, y: number, rotation: Direction) {
+  canPlaceNextTile(x: number, y: number) {
     return this.emptyNeighbourTiles.get(this.getCoords(x, y));
   }
 
   // places the next tile at the given position
-  placeNextTile(x: number, y: number, rotation: Direction) {
+  placeNextTile(x: number, y: number) {
     let nextTile = this.deck.shift();
     if (!nextTile) {
       console.error("No tiles left.");
       return;
     }
-    this.setTile(nextTile, x, y, rotation);
+    this.setTile(nextTile, x, y);
   }
 
-  setTile(tile: Tile, x: number, y: number, rotation: Direction) {
-    tile.rotation = rotation;
+  setTile(tile: Tile, x: number, y: number) {
     this.map.set(this.getCoords(x, y), tile);
     this.recalculateNeighbours();
     this.recalculatePlaceable();

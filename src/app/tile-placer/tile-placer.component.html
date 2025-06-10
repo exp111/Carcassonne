@@ -2,7 +2,7 @@
   <span>Remaining Tiles: {{ game.deck.length }}</span>
   <span>Next Tile:</span>
   @if (game.deck.length > 0) {
-    <img class="next-tile" [src]="game.nextTile.getSrc()" [style.rotate]="`${this.selectedRotation * 90}deg`">
+    <img class="next-tile" [src]="game.nextTile.getSrc()" [style.rotate]="`${game.nextTile!.rotation * 90}deg`">
   }
   <button (click)="rotate(-1)">Rotate Left</button>
   <button (click)="rotate(1)">Rotate Right</button>
