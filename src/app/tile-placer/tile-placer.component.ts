@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Game} from '../../services/game';
 import {MapComponent} from '../map/map.component';
 
@@ -11,11 +11,19 @@ import {MapComponent} from '../map/map.component';
   styleUrl: './tile-placer.component.scss'
 })
 export class TilePlacerComponent implements OnInit {
-  constructor(protected game: Game) {
+  constructor(protected game: Game,
+              protected changeDetectorRef: ChangeDetectorRef) {
     game.init();
   }
 
   ngOnInit() {
     (window as any).placer = this;
+  }
+
+  onClickTile(coords: string) {
+    let pos = this.game.parseCoords(coords);
+    this.game.placeNextTile(pos.x, pos.y);
+    // update grid
+    this.changeDetectorRef.detectChanges();
   }
 }

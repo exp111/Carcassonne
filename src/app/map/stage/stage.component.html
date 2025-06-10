@@ -7,16 +7,16 @@
   }
   <!-- draw empty neighbour tiles-->
   @for (entry of game.emptyNeighbourTiles; track entry[0]) {
-    @let coord = entry[0];
-    @let pos = game.parseCoords(coord);
+    @let coords = entry[0];
+    @let pos = game.parseCoords(coords);
     <pixi-graphics #emptyTile [x]="pos.x * TILE_WIDTH" [y]="pos.y * TILE_WIDTH"
                    [rect]="TILE_RECT_STRING"
                    [stroke]="{ width: 1, color: 'red' }"
                    eventMode="static"
                    [hitArea]="TILE_RECT"
-                   (click)="onClickEmptyTile(coord)"
-                   (mouseover)="hoverTile(emptyTile, coord)"
-                   (mouseleave)="unhoverTile(emptyTile, coord)"
+                   (click)="onClickEmptyTile(coords)"
+                   (mouseover)="hoverTile(emptyTile, coords)"
+                   (mouseleave)="unhoverTile(emptyTile, coords)"
     />
   }
 </pixi-container>
