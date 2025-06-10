@@ -34,6 +34,15 @@ export function getOppositeDirection(dir: Direction) {
   }
 }
 
+export function normalizeDirection(dir: Direction) {
+  // negative case, wrap around
+  while (dir < 0) {
+    dir += Direction.END;
+  }
+  // positive case, wrap around
+  return dir % Direction.END;
+}
+
 export class Tile {
   start: boolean;
   name: string;
@@ -50,8 +59,7 @@ export class Tile {
   }
 
   getEdge(direction: Direction) {
-    //TODO: rotation
-    return this.edges[direction];
+    return this.edges[normalizeDirection(direction + (Direction.END - this.rotation))];
   }
 
   parseName(name: string): [Edge[], Feature[]] {

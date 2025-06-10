@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {Game} from '../../services/game';
 import {MapComponent} from '../map/map.component';
-import {Direction} from '../../model/tile';
+import {Direction, normalizeDirection} from '../../model/tile';
 
 @Component({
   selector: 'app-tile-placer',
@@ -22,12 +22,7 @@ export class TilePlacerComponent {
 
   rotate(amount: number) {
     this.selectedRotation += amount;
-    // negative case, wrap around
-    while (this.selectedRotation < 0) {
-      this.selectedRotation += Direction.END;
-    }
-    // positive case, wrap around
-    this.selectedRotation = this.selectedRotation % Direction.END;
+    this.selectedRotation = normalizeDirection(this.selectedRotation);
   }
 
   onClickTile(coords: string) {
