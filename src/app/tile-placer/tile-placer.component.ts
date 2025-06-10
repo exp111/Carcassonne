@@ -32,6 +32,9 @@ export class TilePlacerComponent {
 
   onClickTile(coords: string) {
     let pos = this.game.parseCoords(coords);
+    if (!this.game.canPlaceNextTile(pos.x, pos.y, this.selectedRotation)) {
+      return;
+    }
     this.game.placeNextTile(pos.x, pos.y, this.selectedRotation);
     // reset rotation
     this.selectedRotation = Direction.N;

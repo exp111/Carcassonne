@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Direction, Tile} from '../model/tile';
+import {Direction, getOppositeDirection, Tile} from '../model/tile';
 import {shuffleArray} from '../utils/arrayUtil';
 import {Tiles} from '../data/tiles';
 
@@ -29,6 +29,7 @@ export class Game {
     this.map = new Map();
   }
 
+  // places the starting tile at 0,0
   placeStartTile() {
     let startIndex = this.deck.findIndex(t => t.start);
     let start = this.deck.splice(startIndex, 1)[0];
@@ -39,6 +40,12 @@ export class Game {
     this.setTile(start, 0, 0, Direction.N);
   }
 
+  // checks if the next tile can be placed at the given position
+  canPlaceNextTile(x: number, y: number, rotation: Direction) {
+    return this.emptyNeighbourTiles.get(this.getCoords(x, y));
+  }
+
+  // places the next tile at the given position
   placeNextTile(x: number, y: number, rotation: Direction) {
     let nextTile = this.deck.shift();
     if (!nextTile) {
@@ -52,6 +59,7 @@ export class Game {
     tile.rotation = rotation;
     this.map.set(this.getCoords(x, y), tile);
     this.recalculateNeighbours();
+    this.recalculatePlaceable();
   }
 
   getTile(x: number, y: number) {
@@ -74,6 +82,7 @@ export class Game {
     this.deck = shuffleArray(Tiles);
   }
 
+  // checks which tiles are empty and adjacent to a placed tile
   recalculateNeighbours() {
     this.emptyNeighbourTiles.clear();
     for (let entry of this.map) {
@@ -82,6 +91,50 @@ export class Game {
         this.emptyNeighbourTiles.set(neighbour, true);
       }
     }
+  }
+
+  // checks in which of the empty tiles the next tile can be placed
+  recalculatePlaceable() {
+    let nextTile = this.nextTile;
+    // check each empty tile if the next tile can be placed there
+    for (let [coords, _] of this.emptyNeighbourTiles) {
+      // mark if tile is placeeable at the coord
+      this.emptyNeighbourTiles.set(coords, this.isTilePlaceable(this.nextTile, coords));
+    }
+  }
+
+  isTilePlaceable(tile: Tile, coords: string) {
+    let neighbourTiles = this.getFilledNeighbours(coords);
+    for (let neighbour of neighbourTiles) {
+      let dir = this.getDirectionOfNeighbour(coords, neighbour);
+      let opposite = getOppositeDirection(dir!);
+      if (dir == null || opposite == null){
+        console.error(`Invalid direction for ${coords} with neighbor ${neighbour}`);
+        continue;
+      }
+      // check if edge pointing towards neigbour is the same type as neighbor edge pointing to us
+      if (tile.getEdge(dir) != this.map.get(neighbour)!.getEdge(opposite)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  getDirectionOfNeighbour(self: string, neighbour: string) {
+    let selfPos = this.parseCoords(self);
+    let neighbourPos = this.parseCoords(neighbour);
+    let diff = {x: selfPos.x - neighbourPos.x, y: selfPos.y - neighbourPos.y};
+    if (diff.x > 0) {
+      return Direction.W;
+    } else if (diff.x < 0) {
+      return Direction.E;
+    }
+    if (diff.y > 0) {
+      return Direction.S;
+    } else if (diff.y < 0) {
+      return Direction.N;
+    }
+    return null;
   }
 
   // gets the empty orthogonal neighbor coordinates of a coordinate

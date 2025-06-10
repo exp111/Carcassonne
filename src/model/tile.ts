@@ -19,6 +19,21 @@ export enum Direction {
   END
 }
 
+export function getOppositeDirection(dir: Direction) {
+  switch (dir) {
+    case Direction.N:
+      return Direction.S;
+    case Direction.E:
+      return Direction.W;
+    case Direction.S:
+      return Direction.N;
+    case Direction.W:
+      return Direction.E;
+    default:
+      return null;
+  }
+}
+
 export class Tile {
   start: boolean;
   name: string;
@@ -32,6 +47,11 @@ export class Tile {
     this.start = start;
 
     [this.edges, this.features] = this.parseName(name);
+  }
+
+  getEdge(direction: Direction) {
+    //TODO: rotation
+    return this.edges[direction];
   }
 
   parseName(name: string): [Edge[], Feature[]] {
