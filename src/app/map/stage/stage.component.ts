@@ -27,7 +27,6 @@ import {PixiViewportComponent} from '../pixi-viewport/pixi-viewport.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class StageComponent extends PixiComponent<Container> {
-  WORLD_SIZE = 1000;
   TILE_WIDTH = 128;
   TILE_RECT_STRING = `0, 0, ${this.TILE_WIDTH}, ${this.TILE_WIDTH}`;
   TILE_RECT = new Rectangle(0, 0, this.TILE_WIDTH, this.TILE_WIDTH);
@@ -36,9 +35,6 @@ export class StageComponent extends PixiComponent<Container> {
 
   @Output()
   clickTile = new EventEmitter<string>();
-
-  @ViewChild("container")
-  pixiContainer!: ElementRef;
 
   constructor(protected game: Game) {
     super();

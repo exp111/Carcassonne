@@ -1,4 +1,4 @@
-<app-pixi-viewport #container>
+<app-pixi-viewport>
   <!-- draw game tiles -->
   @for (entry of game.map; track entry[0]) {
     @let pos = game.parseCoords(entry[0]);
