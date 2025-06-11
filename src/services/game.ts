@@ -104,7 +104,8 @@ export class Game {
     // check each empty tile if the next tile can be placed there
     for (let [coords, _] of this.emptyNeighbourTiles) {
       // mark if tile is placeeable at the coord
-      this.emptyNeighbourTiles.set(coords, this.isTilePlaceable(this.nextTile, coords));
+      let res = nextTile ? this.isTilePlaceable(nextTile, coords) : false;
+      this.emptyNeighbourTiles.set(coords, res);
     }
   }
 
