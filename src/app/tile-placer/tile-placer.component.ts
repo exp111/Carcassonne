@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener} from '@angular/core';
 import {Game} from '../../services/game';
 import {MapComponent} from '../map/map.component';
 import {Direction} from '../../model/tile';
@@ -16,6 +16,16 @@ export class TilePlacerComponent {
               protected changeDetectorRef: ChangeDetectorRef) {
     (window as any).placer = this;
     game.init();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    console.log(event);
+    if (event.code == "KeyQ") {
+      this.rotate(-1);
+    } else if (event.code == "KeyE") {
+      this.rotate(1);
+    }
   }
 
   rotate(amount: number) {

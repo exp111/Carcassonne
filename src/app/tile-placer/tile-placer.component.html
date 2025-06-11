@@ -4,8 +4,8 @@
   @if (game.deck.length > 0) {
     <img class="next-tile" [src]="game.nextTile.getSrc()" [style.rotate]="`${game.nextTile!.rotation * 90}deg`">
   }
-  <button (click)="rotate(-1)">Rotate Left</button>
-  <button (click)="rotate(1)">Rotate Right</button>
+  <button (click)="rotate(-1)">Rotate Left (Q)</button>
+  <button (click)="rotate(1)">Rotate Right (E)</button>
   <button (click)="skipTile()">Skip</button>
 </div>
 <app-map (clickTile)="onClickTile($event)"></app-map>
