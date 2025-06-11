@@ -20,7 +20,6 @@ export class TilePlacerComponent {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    console.log(event);
     if (event.code == "KeyQ") {
       this.rotate(-1);
     } else if (event.code == "KeyE") {
