@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Output} from '@angular/core';
 import {PixiComponent, PixiContainer} from '@klerick/ng-pixijs';
 import {Assets, Container, Graphics, Rectangle, Texture} from 'pixi.js';
 import {TileDefs} from '../../../data/tiles';

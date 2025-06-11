@@ -6,6 +6,7 @@ import {EventSystem} from "pixi.js";
 class WrapperViewport extends Viewport {
     constructor() {
         super({
+            //TODO: dont use full window size, but rather element size
             screenWidth: window.innerWidth,
             screenHeight: window.innerHeight,
             worldWidth: 1000,
