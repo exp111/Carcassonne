@@ -48,11 +48,13 @@ export class Tile {
   name: string;
   edges: Edge[];
   features: Feature[];
+  connections: Direction[][];
   // Runtime vars
   rotation = Direction.N;
 
-  constructor(name: string, start: boolean = false) {
+  constructor(name: string, connections: Direction[][], start: boolean = false) {
     this.name = name;
+    this.connections = connections;
     this.start = start;
 
     [this.edges, this.features] = this.parseName(name);
