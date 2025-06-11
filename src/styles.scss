@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  // 99% because of default margins
+  height: 99%;
+}
 body {
   font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }

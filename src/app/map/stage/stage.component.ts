@@ -38,8 +38,7 @@ export class StageComponent extends PixiComponent<Container> implements AfterVie
   @ViewChild("container")
   pixiContainer!: ElementRef;
 
-  constructor(protected game: Game,
-              protected changeDetection: ChangeDetectorRef) {
+  constructor(protected game: Game) {
     super();
     (window as any).stage = this;
     this.loadTextures();
@@ -49,6 +48,7 @@ export class StageComponent extends PixiComponent<Container> implements AfterVie
     //TODO: move viewport shiv into own component somehow?
     // create viewport
     let viewport = new Viewport({
+      //TODO: dont use full window size, but rather element size
       screenWidth: window.innerWidth,
       screenHeight: window.innerHeight,
       worldWidth: this.WORLD_SIZE,
@@ -62,7 +62,7 @@ export class StageComponent extends PixiComponent<Container> implements AfterVie
     // add stage content to viewport
     viewport.addChild(this.pixiContainer.nativeElement);
     // center start tile
-    viewport.center = new Point(0,0);
+    viewport.moveCenter(0,0);
   }
 
   async loadTextures() {
