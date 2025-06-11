@@ -18,5 +18,9 @@ nav {
     &:hover {
       color: gray;
     }
+
+    &.right {
+      margin-left: auto;
+    }
   }
 }
